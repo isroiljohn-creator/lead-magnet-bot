@@ -1,0 +1,6 @@
+node_modules
+.env
+bot_database.db
+bot_database.db-journal
+*.xlsx
+.DS_Store
