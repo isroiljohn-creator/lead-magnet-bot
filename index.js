@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-const ADMIN_ID = process.env.ADMIN_ID;
+const ADMIN_IDS = process.env.ADMIN_ID ? process.env.ADMIN_ID.split(',') : [];
 
 bot.use(session());
 bot.use((ctx, next) => {
@@ -14,7 +14,7 @@ bot.use((ctx, next) => {
     return next();
 });
 
-const isAdmin = (ctx) => ctx.from && ctx.from.id.toString() === ADMIN_ID;
+const isAdmin = (ctx) => ctx.from && ADMIN_IDS.includes(ctx.from.id.toString());
 
 // USER LOGIC
 const showMainMenu = (ctx) => {
