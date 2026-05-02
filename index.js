@@ -85,7 +85,8 @@ bot.action(/view_lesson_(\d+)/, async (ctx) => {
     db.prepare(`INSERT INTO lesson_views (telegram_id, lesson_id) VALUES (?, ?)`).run(user.id.toString(), lessonId);
 
     const inlineKeyboard = Markup.inlineKeyboard([
-        Markup.button.url(lesson.button_text || "▶️ Darsni ko'rish", lesson.link || "https://t.me")
+        [Markup.button.url(lesson.button_text || "▶️ Darsni ko'rish", lesson.link || "https://t.me")],
+        [Markup.button.url("📢 Telegram kanal", "https://t.me/marketingnoldan")]
     ]);
 
     if (lesson.file_id) {
